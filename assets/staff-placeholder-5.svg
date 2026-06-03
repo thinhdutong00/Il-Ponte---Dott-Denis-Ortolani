@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="630" viewBox="0 0 420 630" role="img" aria-labelledby="title">
+  <title id="title">Professionista da inserire</title>
+  <rect width="420" height="630" fill="#E8F5FB"/>
+  <circle cx="210" cy="198" r="86" fill="#FFFFFF"/>
+  <path d="M96 513c22-92 71-139 114-139s92 47 114 139" fill="#FFFFFF"/>
+  <path d="M119 305c35 36 71 54 109 54 37 0 70-18 99-54" fill="none" stroke="#0E384C" stroke-width="15" stroke-linecap="round"/>
+  <text x="210" y="562" text-anchor="middle" font-family="ui-sans-serif, system-ui, sans-serif" font-size="26" font-weight="800" fill="#0E384C">Dati del vostro studio</text>
+</svg>

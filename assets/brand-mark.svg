@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300" role="img" aria-labelledby="title desc">
+  <title id="title">Il Ponte brand mark</title>
+  <desc id="desc">Marchio compatto con ponte dentale stilizzato.</desc>
+  <defs>
+    <linearGradient id="bg" x1="54" y1="39" x2="244" y2="265" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#28A4D6"/>
+      <stop offset="1" stop-color="#0E384C"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="88" y1="69" x2="204" y2="158" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFFFFF"/>
+      <stop offset="1" stop-color="#DFF5FC"/>
+    </linearGradient>
+  </defs>
+  <circle cx="150" cy="150" r="142" fill="#E8F5FB"/>
+  <circle cx="150" cy="150" r="119" fill="url(#bg)"/>
+  <path d="M74 159c26-54 52-78 77-78 20 0 32 16 42 39 9-22 24-39 50-39 30 0 54 34 67 78" fill="none" stroke="url(#shine)" stroke-width="24" stroke-linecap="round"/>
+  <path d="M82 166h175" stroke="#FFFFFF" stroke-width="19" stroke-linecap="round"/>
+  <path d="M109 166v48M151 166v58M193 166v48" stroke="#DFF5FC" stroke-width="18" stroke-linecap="round"/>
+  <path d="M103 113c19-31 43-47 73-47 28 0 52 16 71 47" fill="none" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" opacity=".92"/>
+</svg>
