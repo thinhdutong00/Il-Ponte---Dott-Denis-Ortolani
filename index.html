@@ -600,7 +600,17 @@
       align-items: stretch;
       gap: .9rem;
       max-width: 860px;
-      margin-top: 1rem;
+      margin-top: 1.65rem;
+      padding: 1rem 1.15rem;
+      border: 1px solid rgba(255,255,255,.72);
+      border-radius: 20px;
+      background:
+        radial-gradient(circle at 12% 0%, rgba(30,132,181,.18), transparent 34%),
+        linear-gradient(135deg, rgba(255,255,255,.84), rgba(235,248,252,.56)),
+        rgba(255,255,255,.64);
+      box-shadow: 0 24px 64px rgba(14,56,76,.14), inset 0 1px 0 rgba(255,255,255,.9);
+      -webkit-backdrop-filter: blur(22px) saturate(170%);
+      backdrop-filter: blur(22px) saturate(170%);
       color: var(--primary);
     }
 
@@ -661,13 +671,9 @@
     .review-viewport {
       position: relative;
       overflow: hidden;
-      border: 1px solid rgba(255,255,255,.72);
-      border-radius: 18px;
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.82), rgba(235,248,252,.54)),
-        rgba(255,255,255,.64);
-      box-shadow: 0 24px 64px rgba(14,56,76,.14), inset 0 1px 0 rgba(255,255,255,.9);
-      backdrop-filter: blur(22px) saturate(170%);
+      height: 170px;
+      min-height: 170px;
+      border-radius: 16px;
     }
 
     .review-viewport::before {
@@ -685,16 +691,17 @@
       position: relative;
       z-index: 2;
       display: flex;
-      transition: transform .48s cubic-bezier(.2,.8,.2,1);
+      flex-direction: column;
+      transition: transform .54s cubic-bezier(.2,.8,.2,1);
       will-change: transform;
     }
 
     .review-card {
       display: grid;
       grid-template-rows: auto auto;
-      flex: 0 0 100%;
+      flex: 0 0 170px;
       min-height: 170px;
-      padding: 1.1rem 1.2rem;
+      padding: .85rem .35rem .65rem;
       cursor: pointer;
     }
 
@@ -2186,8 +2193,14 @@
         grid-template-columns: 1fr;
         gap: .55rem;
         max-width: none;
+        padding: 1rem;
       }
       .review-card {
+        min-height: 190px;
+        flex-basis: 190px;
+      }
+      .review-viewport {
+        height: 190px;
         min-height: 190px;
       }
       section { padding-block: 58px; }
@@ -2258,7 +2271,8 @@
         overflow-wrap: anywhere;
       }
       .review-carousel {
-        margin-top: .85rem;
+        margin-top: 1.1rem;
+        border-radius: 18px;
       }
       .review-carousel-head {
         display: flex;
@@ -2284,9 +2298,12 @@
       }
       .review-card {
         min-height: 208px;
+        flex-basis: 208px;
         padding: 1rem;
       }
       .review-viewport {
+        height: 208px;
+        min-height: 208px;
         border-radius: 16px;
       }
       .review-card blockquote {
@@ -3605,6 +3622,7 @@
 
         carousels.forEach((carousel) => {
           const track = carousel.querySelector("[data-review-track]");
+          const viewport = carousel.querySelector(".review-viewport");
           const slides = [...carousel.querySelectorAll(".review-card")];
           const dots = [...carousel.querySelectorAll("[data-review-dot]")];
           const prev = carousel.querySelector("[data-review-prev]");
@@ -3613,7 +3631,7 @@
           let activeIndex = 0;
           let timer = null;
 
-          if (!track || slides.length < 2) return;
+          if (!track || !viewport || slides.length < 2) return;
 
           const stop = () => {
             if (timer) window.clearInterval(timer);
@@ -3622,7 +3640,8 @@
           };
 
           const update = () => {
-            track.style.transform = `translateX(-${activeIndex * 100}%)`;
+            const slideHeight = viewport.getBoundingClientRect().height || slides[0].getBoundingClientRect().height;
+            track.style.transform = `translateY(-${activeIndex * slideHeight}px)`;
             slides.forEach((slide, index) => {
               slide.setAttribute("aria-hidden", String(index !== activeIndex));
             });
@@ -3653,6 +3672,8 @@
             event.stopPropagation();
             goTo(activeIndex + 1, true);
           });
+
+          window.addEventListener("resize", update, { passive: true });
 
           dots.forEach((dot, index) => {
             dot.addEventListener("click", (event) => {
